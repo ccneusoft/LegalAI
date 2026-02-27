@@ -11,9 +11,13 @@
     "outDir": "dist-electron",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "typeRoots": ["src/main/types", "node_modules/@types"],
     "paths": {
       "*": ["node_modules/*"]
     }
   },
-  "include": ["src/main"]
+  "include": [
+    "src/main",
+    "src/main/types/**/*.d.ts"
+  ]
 }

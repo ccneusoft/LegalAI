@@ -1,10 +1,22 @@
+/// <reference path="../types/claude-agent-sdk.d.ts" />
 import { app } from 'electron';
 import { existsSync } from 'fs';
 import { join } from 'path';
 import { pathToFileURL } from 'url';
 import { coworkLog } from './coworkLogger';
 
-export type ClaudeSdkModule = typeof import('@anthropic-ai/claude-agent-sdk');
+// `typeof import(...)` will derive its shape from the ambient module
+// declarations (or lack thereof).  Unfortunately the SDK doesn't ship any
+// types, and our manual declaration file isn't reliably picked up for this
+// expression, so we add a small augmentation here to ensure the properties
+// we access later (`query`, `createSdkMcpServer`, `tool`) are present on the
+// type.  They are intentionally marked optional since they may not exist in
+// future SDK versions.
+export type ClaudeSdkModule = typeof import('@anthropic-ai/claude-agent-sdk') & {
+  query?: any;
+  createSdkMcpServer?: any;
+  tool?: any;
+};
 
 let claudeSdkPromise: Promise<ClaudeSdkModule> | null = null;
 
