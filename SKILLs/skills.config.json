@@ -14,6 +14,7 @@
     "create-plan": { "order": 80, "enabled": true },
     "canvas-design": { "order": 90, "enabled": true },
     "frontend-design": { "order": 100, "enabled": true },
+    "case-overview-v1": { "order": 105, "enabled": true },
     "local-tools": { "order": 200, "enabled": true },
     "weather": { "order": 210, "enabled": true },
     "skill-creator": { "order": 300, "enabled": true }
